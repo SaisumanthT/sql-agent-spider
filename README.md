@@ -130,13 +130,15 @@ The UI is organized like this:
 #### Screenshots
 
 **Main Dashboard**
-![Main app interface with database preview](docs/screenshots/01_main_dashboard.png)
-
-**Ask a Question**
 ![Question input interface with sample prompts](docs/screenshots/02_ask_question.png)
 
-**Answer with SQL**
+**Ask a Question**
 ![Generated SQL query and results](docs/screenshots/03_answer_sql.png)
+
+
+**Answer with SQL**
+![Main app interface with database preview](docs/screenshots/01_main_dashboard.png)
+
 
 Recommended app flow:
 
