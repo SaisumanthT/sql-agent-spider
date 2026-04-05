@@ -127,6 +127,17 @@ The UI is organized like this:
 8. `Explanation`
 9. `Debug Trace`
 
+#### Screenshots
+
+**Main Dashboard**
+![Main app interface with database preview](docs/screenshots/01_main_dashboard.png)
+
+**Ask a Question**
+![Question input interface with sample prompts](docs/screenshots/02_ask_question.png)
+
+**Answer with SQL**
+![Generated SQL query and results](docs/screenshots/03_answer_sql.png)
+
 Recommended app flow:
 
 1. Leave `Dataset` on `Retail Analytics`.
