@@ -1,0 +1,32 @@
+[
+  {
+    "id": "q1_customers_without_orders",
+    "question": "Which customers have never placed an order?",
+    "reference_sql": "SELECT c.customer_name FROM customers AS c WHERE NOT EXISTS (SELECT 1 FROM orders AS o WHERE o.customer_id = c.customer_id) ORDER BY c.customer_name;"
+  },
+  {
+    "id": "q2_revenue_by_category_2024",
+    "question": "What was total completed-order revenue by product category in 2024?",
+    "reference_sql": "SELECT p.category, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue FROM orders AS o JOIN order_items AS oi ON o.order_id = oi.order_id JOIN products AS p ON oi.product_id = p.product_id WHERE o.status = 'completed' AND o.order_date >= '2024-01-01' AND o.order_date < '2025-01-01' GROUP BY p.category ORDER BY total_revenue DESC, p.category;"
+  },
+  {
+    "id": "q3_top_customers_2024",
+    "question": "Who were the top 3 customers by completed-order revenue in 2024?",
+    "reference_sql": "SELECT c.customer_name, ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN order_items AS oi ON o.order_id = oi.order_id WHERE o.status = 'completed' AND o.order_date >= '2024-01-01' AND o.order_date < '2025-01-01' GROUP BY c.customer_id, c.customer_name ORDER BY total_revenue DESC, c.customer_name LIMIT 3;"
+  },
+  {
+    "id": "q4_products_never_sold",
+    "question": "Which products have never been sold in a completed order?",
+    "reference_sql": "SELECT p.product_name FROM products AS p WHERE NOT EXISTS (SELECT 1 FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id WHERE oi.product_id = p.product_id AND o.status = 'completed') ORDER BY p.product_name;"
+  },
+  {
+    "id": "q5_open_high_priority_by_segment",
+    "question": "How many open high-priority support tickets does each customer segment have?",
+    "reference_sql": "SELECT c.segment, COUNT(*) AS open_high_priority_tickets FROM support_tickets AS st JOIN customers AS c ON st.customer_id = c.customer_id WHERE st.priority = 'high' AND st.resolution_status = 'open' GROUP BY c.segment ORDER BY open_high_priority_tickets DESC, c.segment;"
+  },
+  {
+    "id": "q6_invoice_payment_customers",
+    "question": "Which customers used invoice payments for at least one paid order?",
+    "reference_sql": "SELECT DISTINCT c.customer_name FROM customers AS c JOIN orders AS o ON c.customer_id = o.customer_id JOIN payments AS p ON o.order_id = p.order_id WHERE p.payment_method = 'invoice' AND p.payment_status = 'paid' ORDER BY c.customer_name;"
+  }
+]

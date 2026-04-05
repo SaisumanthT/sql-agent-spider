@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.streamlit/
+results/*.csv
+results/*.json
+data/retail_analytics/*.db
+dist/
+build/
+*.egg-info/
+.DS_Store
